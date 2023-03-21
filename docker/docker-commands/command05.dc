@@ -1,2 +1,1 @@
-docker rm 01container
-docker container ps -a --filter name=01container
+docker rm -f 01container
