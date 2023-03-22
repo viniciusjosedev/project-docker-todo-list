@@ -7,7 +7,7 @@ services:
     depends_on:
       - todoback
     environment:
-      REACT_APP_API_HOST: todobackend
+      REACT_APP_API_HOST: docker-todoback-1
     networks:
       - rede-docker
   todoback:
@@ -22,7 +22,7 @@ services:
       - todofront
       - todoback
     environment:
-      FRONT_HOST: todofrontend
+      FRONT_HOST: docker-todofront-1
     networks:
       - rede-docker
 networks:
