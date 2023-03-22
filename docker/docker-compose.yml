@@ -1,11 +1,29 @@
-version: 'X'
+version: '3'
 services:
-  app_A:
-    # ...
-    # parâmetros
-    # ...
-  app_B:
-    # ...
-    # parâmetros
-    # ...
-  # ...
+  todofront:
+    build: ./todo-app/front-end
+    ports:
+      - 3000:3000
+    depends_on:
+      - todoback
+    environment:
+      REACT_APP_API_HOST: todobackend
+    networks:
+      - rede-docker
+  todoback:
+    build: ./todo-app/back-end
+    ports:
+      - 3001:3001
+    networks:
+      - rede-docker
+  todotests:
+    build: ./todo-app/tests
+    depends_on:
+      - todofront
+      - todoback
+    environment:
+      FRONT_HOST: todofrontend
+    networks:
+      - rede-docker
+networks:
+  rede-docker:
